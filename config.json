@@ -1,0 +1,20 @@
+{
+    "data":"code",
+    "hf_perm":"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",
+    "model_id":"",
+    "test_size":0.1,
+    "train_batch_size":32,
+    "val_batch_size":16,
+    "epochs": 2,
+    "epoch_save":2,
+    "save_dir":"whisper_lora",
+    "checkpoint_name":"lora_code",
+    "repo_id":"Muhammed164/ASLM",
+    "hf_repo_path":"code_lora_whisper_model",
+    "push_hf":true,
+    "r":128,
+   "lora_alpha":32,
+   "target_modules":["q_proj", "k_proj", "v_proj", "out_proj","fc1", "fc2"],
+   "lora_dropout":0.3,
+   "bias":"none"
+}
