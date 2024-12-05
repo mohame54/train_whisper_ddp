@@ -10,7 +10,7 @@ from transformers import (
     WhisperForConditionalGeneration,
     WhisperFeatureExtractor,
 )
-from huggingface_hub.hf_api import HfFolder, Repository, create_repo
+from huggingface_hub.hf_api import HfFolder
 from peft import LoraConfig, get_peft_model
 from torch.util.data import Dataset
 

@@ -112,14 +112,17 @@ for epoch in range(config['epochs']):
                                        f"Validation loss for epoch:{epoch + 1}":Mean(val_losses)})
 
     
+        
+    accelerator.wait_for_everyone() 
     if (epoch +1) % config['epoch_save'] and accelerator.is_main_process:
-        checkpoint_path = os.path.join(config['save_dir'], config['checkpoint_name'])
-        Model.save_pretrained(checkpoint_path)
-        print(f"Saved best model: {checkpoint_path}")
-        if config['push_hf']:
+      checkpoint_path = os.path.join(config['save_dir'], config['checkpoint_name'])
+      model = accelerator.unwrap_model(Model)
+      model.save_pretrained(checkpoint_path)
+      accelerator.print(f"Saved best model: {checkpoint_path}")
+      if config['push_hf']:
             api.upload_folder(
-              folder_path=checkpoint_path,
-              path_in_repo=config['hf_repo_path'],
+            folder_path=checkpoint_path,
+            path_in_repo=config['hf_repo_path'],
                repo_id=config['repo_id'],
             )
-      
+            
